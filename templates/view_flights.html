@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Flights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Available Flights</h2>
+
+    <!-- Flight search form -->
+    <form method="POST">
+        <input type="text" name="search_query" placeholder="Search by flight name, departure, or arrival" value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Flights table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Flight Name</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight[1] }}</td>
+                <td>{{ flight[2] }}</td>
+                <td>{{ flight[3] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('book_flight') }}">
+                        <input type="hidden" name="flight_id" value="{{ flight[0] }}">
+                        <input type="text" name="passenger_name" placeholder="Your Name" required>
+                        <button type="submit">Book Flight</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+
+    <nav>
+        <a href="{{ url_for('admin_add_flight') }}">Add New Flight</a>
+    </nav>
+
+    <h3>Flight List</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Flight Name</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight[1] }}</td>
+                <td>{{ flight[2] }}</td>
+                <td>{{ flight[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Bookings</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Flight ID</th>
+                <th>Passenger Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking[0] }}</td>
+                <td>{{ booking[1] }}</td>
+                <td>{{ booking[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Logout Button -->
+    <a href="{{ url_for('logout') }}">
+        <button>Logout</button>
+    </a>
+
+
+</body>
+</html>

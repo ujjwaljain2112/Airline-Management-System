@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <h2>Welcome, {{ session['user'][1] }}!</h2>
+    <nav>
+      <a href="{{ url_for('view_flights') }}">View Flights</a>
+      <a href="{{ url_for('book_flight') }}">Book a Flight</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+      <!-- Logout link -->
+    </nav>
+  </body>
+</html>
